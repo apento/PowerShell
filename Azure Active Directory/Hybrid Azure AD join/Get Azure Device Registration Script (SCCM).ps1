@@ -1,4 +1,24 @@
-﻿function LogIt
+﻿<#  
+.SYNOPSIS  
+  Compare Azure AD Hybrid joined machines in Azure Active Directory with active clients in ConfMgr.
+  
+.DESCRIPTION  
+   Compare Azure AD Hybrid joined machines in Azure Active Directory with active clients in ConfMgr.
+         
+.NOTES  
+    Author: Peter Selch Dahl from APENTO ApS  
+    Website: https://www.APENTO.com 
+    Last Updated: 11/17/2018 
+    Version 1.0 
+ 
+    #DISCLAIMER 
+    The script is provided AS IS without warranty of any kind. 
+ 
+#>  
+ 
+
+
+function LogIt
 {
   param (
   [Parameter(Mandatory=$true)]
