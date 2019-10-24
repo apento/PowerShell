@@ -1,26 +1,35 @@
-﻿# Connenct to MSGraph
+﻿####################################################
+#
+# DEMO: 
+# Force an Intune Policy Sync for all Devices in a Tenant
+#
+# Author: Ronni Pedersen, APENTO
+# Twitter: @ronnipedersen
+# Email: rop@apento.com
+#
+####################################################
+
+# Step 1 - Connenct to MSGraph
 Connect-MSGraph
 
-# Get a list of all Devices
+# Step 2 - Get a list of all Devices
 Get-IntuneManagedDevice | ft
 
-# Select the OS you need to update
+# Step 3A - Select the Operating System
 $Devices = Get-IntuneManagedDevice -Filter "contains(operatingsystem, 'iOS')"
 $Devices = Get-IntuneManagedDevice -Filter "contains(operatingsystem, 'Android')" 
 $Devices = Get-IntuneManagedDevice -Filter "contains(operatingsystem, 'Windows')"
 
-# More than 1000 Objects
+# Step 3B - If you have more than 1000 Objects
 $Devices = Get-IntuneManagedDevice -Filter "contains(operatingsystem, 'Windows')" | Get-MSGraphAllPages
 
-# Count number of devices
+# Step 4 - Count number of selected Devices
 $Devices.Count
 
-
-# Invoke a sync on all devices
+# Step 5 - Invoke a sync on all devices
 Foreach ($Device in $Devices)
 {
     Invoke-IntuneManagedDeviceSyncDevice -managedDeviceId $Device.managedDeviceId
     Write-Host "Sending Sync request to Device with DeviceID $($Device.managedDeviceId)" -ForegroundColor Yellow
 }
  
-
